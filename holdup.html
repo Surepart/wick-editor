@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JSON Squeezer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 90%;
+      max-width: 800px;
+      height: 200px;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-family: monospace;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧃 JSON Squeezer</h1>
+
+  <div class="label">Input JSON</div>
+  <textarea id="input" placeholder='Paste your JSON here...'></textarea>
+
+  <button onclick="squeeze()">Squeeze it</button>
+
+  <div class="label">Squeezed Output</div>
+  <textarea id="output" readonly></textarea>
+
+  <script>
+    function squeeze() {
+      const input = document.getElementById("input").value;
+      const output = document.getElementById("output");
+
+      try {
+        const parsed = JSON.parse(input);
+        const squeezed = JSON.stringify(parsed);
+        output.value = squeezed;
+      } catch (e) {
+        output.value = "⚠️ Invalid JSON: " + e.message;
+      }
+    }
+  </script>
+
+</body>
+</html>
